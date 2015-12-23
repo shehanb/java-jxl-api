@@ -1,0 +1,40 @@
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+import jxl.write.Label;
+import jxl.write.Number;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+
+public void Write(DriverGetSet r2) {
+        try {
+            Workbook workbook = Workbook.getWorkbook(new File("Finantial Records.xls"));
+            WritableWorkbook copy = Workbook.createWorkbook(new File("Finantial Records.xls"), workbook);
+//select sheet 
+            WritableSheet sheet = copy.getSheet(3);
+            int a = sheet.getRows();
+// here getters and setters have the values but you can use (0, a, "ABC") 0 is the column, a is the row
+            Label dname = new Label(0, a, r2.getDname());
+            sheet.addCell(dname);
+
+            Label nic = new Label(1, a, r2.getNic());
+            sheet.addCell(nic);
+
+            Label status = new Label(2, a, r2.getAvailibility());
+            sheet.addCell(status);
+
+            Label date = new Label(3, a, r2.getStatusChangeDate());
+            sheet.addCell(date);
+
+            Label time = new Label(4, a, r2.getStatusChangeTime());
+            sheet.addCell(time);
+
+            copy.write();
+            copy.close();
+            workbook.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
