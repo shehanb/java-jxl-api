@@ -15,6 +15,7 @@ public void Write(DriverGetSet r2) {
 //select sheet 
             WritableSheet sheet = copy.getSheet(3);
             int a = sheet.getRows();
+            
 // here getters and setters have the values but you can use (0, a, "ABC") 0 is the column, a is the row
             Label dname = new Label(0, a, r2.getDname());
             sheet.addCell(dname);
